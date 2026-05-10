@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Feliz Día de las Madres</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e9d5ff; /* 💜 violeta pastel */
+    overflow: hidden;
+    text-align: center;
+  }
+
+  /* 💥 PANTALLA INICIAL */
+  .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #a855f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.8s;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .overlay.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* 💖 CORAZONES */
+  .heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+  }
+
+  /* 🌸 FLORES */
+  .flower {
+    position: fixed;
+    font-size: 28px;
+    animation: float 5s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* TARJETA */
+  .card {
+    width: 360px;
+    margin: 60px auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    overflow: hidden;
+    padding-bottom: 20px;
+    transform: scale(0);
+    transition: 0.6s ease;
+  }
+
+  .card.show {
+    transform: scale(1);
+  }
+
+  .header {
+    background: #a855f7;
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  /* FOTO */
+  .photo {
+    margin: 15px auto;
+    width: 160px;
+    height: 160px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 4px solid #a855f7;
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* BOTONES */
+  button {
+    background: #a855f7;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    margin: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #7e22ce;
+  }
+
+  /* MENSAJES MÁS GRANDES Y LARGOS */
+  .message {
+    display: none;
+    padding: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .message.active {
+    display: block;
+    animation: fade 0.6s ease;
+  }
+
+  @keyframes fade {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- 💥 INICIO -->
+<div class="overlay" onclick="openCard()">
+  💝 Toca para abrir tu sorpresa mamá 💝
+</div>
+
+<!-- 🎶 MÚSICA -->
+<audio id="music" loop>
+  <source src="Always - Bon Jovi (Lyrics) 🎵 - (192 Kbps).mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🌸 FLORES -->
+<div class="flower" style="top:10%; left:5%;">🌻</div>
+<div class="flower" style="top:20%; right:10%;">🌹</div>
+<div class="flower" style="top:70%; left:10%;">🌻</div>
+<div class="flower" style="top:80%; right:15%;">🌹</div>
+
+<!-- 💌 TARJETA -->
+<div class="card" id="card">
+
+  <div class="header">
+    💜 Feliz Día de las Madres 💜
+  </div>
+
+  <!-- 📸 FOTO -->
+  <div class="photo">
+    <img src="mamá_foto.jpg" />
+  </div>
+
+  <!-- BOTONES -->
+  <div>
+    <button onclick="showMessage(0)">Inicio</button>
+    <button onclick="showMessage(1)">Mensaje 1</button>
+    <button onclick="showMessage(2)">Mensaje 2</button>
+    <button onclick="showMessage(3)">Final</button>
+  </div>
+
+  <!-- 💌 MENSAJES LARGOS -->
+  <div id="msg0" class="message active">
+    Mamá 💜 este detalle es solo para ti, hecho con mucho amor y pensando en todo lo que significas en mi vida.
+  </div>
+
+  <div id="msg1" class="message">
+    🌸 Mamá, quiero agradecerte por cada día de tu vida en el que has estado conmigo, cuidándome, apoyándome y dándome tu amor incondicional.  
+    A veces no digo lo suficiente lo importante que eres para mí, pero quiero que siempre lo recuerdes: eres mi mayor heroína en el Universo porque a pesar de todas las veces que has pasado por muy malos momentos has encontrado la fuerza y la voluntad para seguir saliendo adelante y por eso te admiro.
+  </div>
+
+  <div id="msg2" class="message">
+    🌟 Gracias por cada sacrificio que has hecho por mi a lo largo de estos 24 años, por cada abrazo que me ha calmado, por cada consejo que me ha guiado y por nunca soltarme incluso en los momentos difíciles te doy las gracias por eso y más.   
+    Eres una de mis fuerzas, mi inspiración y una de las persona que más admiro en este mundo. Tu eres mi lugar seguro mamá, podrán fallarme las demás personas, pero sé que tú mi madre siempre estará para mi cuando lo necesite porque con un solo abrazo tuyo puede solucionar todo lo que me sucede.
+  </div>
+
+  <div id="msg3" class="message">
+    💜 No hay palabras suficientes para expresar lo agradecido que estoy contigo y por todo lo que te amo mamá.  
+    Solo quiero que seas feliz siempre, que te sientas orgullosa no solo de mi sino también de ti misma, porque eres una mujer increíble, fuerte y llena de amor. Siempre me pregunte de ¿Por qué yo era una persona sentimental y empatica con un corazón lindo (con su caracter obviamente jajaja)? Pero entonces siempre que te volteo a ver recuerdo que ahí estaba la otra persona en el mundo que tiene ese mismo corazón y que me ha enseñado ese tipo de valores.  
+    Te amo hoy, mañana, por siempre y un día más 💖
+  </div>
+
+</div>
+
+<script>
+  function openCard() {
+    document.querySelector(".overlay").classList.add("hide");
+    document.getElementById("card").classList.add("show");
+    
+    const music = document.getElementById("music");
+
+    music.currentTime = 58; 
+    music.play();
+    startHearts();
+  }
+
+  function showMessage(index) {
+    document.querySelectorAll(".message")
+      .forEach(m => m.classList.remove("active"));
+    document.getElementById("msg" + index).classList.add("active");
+  }
+
+  /* 💫 CORAZONES */
+  function startHearts() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💜";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
